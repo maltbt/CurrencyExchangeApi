@@ -52,13 +52,7 @@ namespace CurrencyExchangeAPI.Features.CurrencyExchange
                 return Problem("Amount should be greater than zero", statusCode: (int)HttpStatusCode.BadRequest);
             }
 
-            if (currencyExchangeRequest.TargetCurrency.Length != 3 && currencyExchangeRequest.SourceCurrency.Length != 3)
-            {
-                _logger.LogError(_logFormatter.FormatMessage(LogType.Error, $"Source and target currency should be 3 characters {trackingId}"));
-                return Problem("Source and target currency should be 3 characters", statusCode: (int)HttpStatusCode.BadRequest);
-            }
-
-            if (currencyExchangeRequest.TargetCurrency.Length != 3 && currencyExchangeRequest.SourceCurrency.Length != 3)
+            if (currencyExchangeRequest.TargetCurrency.Length != 3 || currencyExchangeRequest.SourceCurrency.Length != 3)
             {
                 _logger.LogError(_logFormatter.FormatMessage(LogType.Error, $"Source and target currency should be 3 characters {trackingId}"));
                 return Problem("Source and target currency should be 3 characters", statusCode: (int)HttpStatusCode.BadRequest);
